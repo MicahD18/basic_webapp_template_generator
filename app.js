@@ -1,6 +1,6 @@
 import fs, { existsSync } from "fs";
 import path from "path";
-import promptUser, { appName } from "./prompt.js";
+import promptUser, { appName, templateEngine } from "./prompt.js";
 
 const __dirname = path.resolve();
 
@@ -19,7 +19,7 @@ async function generateApp() {
     const appPath = path.join(__dirname, appName.name);
 
     const appFolders = ["models", "views", "controllers", "assets", "styles"];
-    const viewFiles = ["index.html", "404.html"];
+    const viewFiles = [`index.${templateEngine.name}`, `404.${templateEngine.name}`];
     const styleFiles = ["index.css", "404.css"];
 
     fs.mkdir(appPath, { recursive: true }, (err) => {
